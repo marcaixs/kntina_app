@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
-
 import 'package:kntina_app/food_card.dart';
+import 'package:kntina_app/food_service.dart';
 
 class FoodListPage extends StatefulWidget {
   const FoodListPage({super.key});
@@ -21,21 +19,18 @@ class _FoodListPageState extends State<FoodListPage> {
     _fetchFood();
   }
 
-  Future<void> _fetchFood() async {
-    final response = await http.get(
-      Uri.parse('https://testback.apiabalit.com/kntina/kntina.json'),
-    );
-
-    if (response.statusCode == 200) {
-      final data = jsonDecode(response.body);
-      setState(() {
-        _foodList = data['data'] as List;
-        _isLoading = false;
-      });
-    } else {
-      throw Exception('${response.statusCode}');
-    }
+  void _fetchFood() async {
+  setState(() => _isLoading = true);
+  try {
+    final data = await FoodService.fetchFood();
+    setState(() {
+      _foodList = data;
+      _isLoading = false;
+    });
+  } catch (e) {
+    setState(() => _isLoading = false);
   }
+}
 
   @override
   Widget build(BuildContext context) {
