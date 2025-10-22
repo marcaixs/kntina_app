@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kntina_app/food_card.dart';
+import 'package:kntina_app/food_grid.dart';
 import 'package:kntina_app/food_service.dart';
 
 class FoodListPage extends StatefulWidget {
@@ -59,23 +60,7 @@ class _FoodListPageState extends State<FoodListPage> {
       ),
       body: _isLoading
           ? const Center(child: CircularProgressIndicator())
-          : GridView.builder(
-              padding: const EdgeInsets.all(12),
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                crossAxisSpacing: 12,
-                mainAxisSpacing: 12,
-                childAspectRatio: 0.75,
-              ),
-              itemCount: _foodList.length,
-              itemBuilder: (context, index) {
-                return FoodCard(
-                  name: _foodList[index]['title'],
-                  image: _foodList[index]['images'][0],
-                  price: _foodList[index]['price'].toString(),
-                );
-              },
-            ),
+          : Expanded(child: FoodGrid(foodList: _foodList))
     );
   }
 }
