@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:kntina_app/food_card.dart';
 import 'package:kntina_app/food_grid.dart';
 import 'package:kntina_app/food_service.dart';
+import 'package:kntina_app/search_page.dart';
 
 class FoodListPage extends StatefulWidget {
   const FoodListPage({super.key});
@@ -53,7 +54,12 @@ class _FoodListPageState extends State<FoodListPage> {
           IconButton(
             icon: const Icon(Icons.search, color: Colors.black),
             onPressed: () {
-            
+               Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => SearchPage(foodList: _foodList),
+                ),
+              );
             },
           ),
         ],
