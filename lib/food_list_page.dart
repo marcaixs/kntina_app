@@ -11,6 +11,7 @@ class FoodListPage extends StatefulWidget {
 
 class _FoodListPageState extends State<FoodListPage> {
   List _foodList = [];
+  bool _isLoading = true;
 
   @override
   void initState() {
@@ -27,10 +28,9 @@ class _FoodListPageState extends State<FoodListPage> {
       final data = jsonDecode(response.body);
       setState(() {
         _foodList = data['data'] as List;
+        _isLoading = false;
       });
-
     } else {
-
       throw Exception('${response.statusCode}');
     }
   }
@@ -38,29 +38,29 @@ class _FoodListPageState extends State<FoodListPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: GridView.builder(
-        padding: const EdgeInsets.all(12),
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          crossAxisSpacing: 12,
-          mainAxisSpacing: 12,
-          childAspectRatio: 0.75,
-        ),
-        itemCount: _foodList.length,
-        itemBuilder: (context, index) {
-          
-
-          return Container(
-            child: Column(
-              children: [
-                Image.network(_foodList[index]['images'][0]),
-                Text( _foodList[index]['title']),
-                Text( _foodList[index]['price'].toString())
-              ],
+      body: _isLoading
+          ? const Center(child: CircularProgressIndicator())
+          : GridView.builder(
+              padding: const EdgeInsets.all(12),
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                crossAxisSpacing: 12,
+                mainAxisSpacing: 12,
+                childAspectRatio: 0.75,
+              ),
+              itemCount: _foodList.length,
+              itemBuilder: (context, index) {
+                return Container(
+                  child: Column(
+                    children: [
+                      Image.network(_foodList[index]['images'][0]),
+                      Text(_foodList[index]['title']),
+                      Text(_foodList[index]['price'].toString()),
+                    ],
+                  ),
+                );
+              },
             ),
-          );
-        },
-      ),
     );
   }
 }
