@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+import 'package:kntina_app/food_card.dart';
+
 class FoodListPage extends StatefulWidget {
   const FoodListPage({super.key});
 
@@ -50,14 +52,10 @@ class _FoodListPageState extends State<FoodListPage> {
               ),
               itemCount: _foodList.length,
               itemBuilder: (context, index) {
-                return Container(
-                  child: Column(
-                    children: [
-                      Image.network(_foodList[index]['images'][0]),
-                      Text(_foodList[index]['title']),
-                      Text(_foodList[index]['price'].toString()),
-                    ],
-                  ),
+                return FoodCard(
+                  name: _foodList[index]['title'],
+                  image: _foodList[index]['images'][0],
+                  price: _foodList[index]['price'].toString(),
                 );
               },
             ),
