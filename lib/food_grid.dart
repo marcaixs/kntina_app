@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:kntina_app/food_card.dart';
 
 class FoodGrid extends StatelessWidget {
-  final List<dynamic> foodList;
+  final List foodList;
 
   const FoodGrid({super.key, required this.foodList});
 
