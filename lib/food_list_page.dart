@@ -1,0 +1,66 @@
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+
+class FoodListPage extends StatefulWidget {
+  const FoodListPage({super.key});
+
+  @override
+  State<FoodListPage> createState() => _FoodListPageState();
+}
+
+class _FoodListPageState extends State<FoodListPage> {
+  List _foodList = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _fetchFood();
+  }
+
+  Future<void> _fetchFood() async {
+    final response = await http.get(
+      Uri.parse('https://testback.apiabalit.com/kntina/kntina.json'),
+    );
+
+    if (response.statusCode == 200) {
+      final data = jsonDecode(response.body);
+      setState(() {
+        _foodList = data['data'] as List;
+      });
+
+    } else {
+
+      throw Exception('${response.statusCode}');
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: GridView.builder(
+        padding: const EdgeInsets.all(12),
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          crossAxisSpacing: 12,
+          mainAxisSpacing: 12,
+          childAspectRatio: 0.75,
+        ),
+        itemCount: _foodList.length,
+        itemBuilder: (context, index) {
+          
+
+          return Container(
+            child: Column(
+              children: [
+                Image.network(_foodList[index]['images'][0]),
+                Text( _foodList[index]['title']),
+                Text( _foodList[index]['price'].toString())
+              ],
+            ),
+          );
+        },
+      ),
+    );
+  }
+}
