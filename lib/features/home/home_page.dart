@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kntina_app/features/cart/cart_page.dart';
 import 'package:kntina_app/features/food/presentation/food_list_page.dart';
 import 'package:kntina_app/core/services/food_service.dart';
 import 'package:kntina_app/features/food/presentation/search_page.dart';
@@ -45,14 +46,12 @@ class _HomePageState extends State<HomePage> {
       case 1:
         return Text('historial'); //todo: afegir pages
       case 2:
-        return Text('cesta');
+        return CartPage();
       default:
         return const SizedBox.shrink();
     }
   }
 
-  
-  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -80,18 +79,26 @@ class _HomePageState extends State<HomePage> {
 
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedIndex,
-  onTap: (index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  },
+        onTap: (index) {
+          setState(() {
+            _selectedIndex = index;
+          });
+        },
         items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.restaurant), label: 'Comida'),
           BottomNavigationBarItem(
-              icon: Icon(Icons.inventory_2), label: 'Historial'),
-          BottomNavigationBarItem(icon: Icon(Icons.shopping_bag), label: 'Cesta'),
+            icon: Icon(Icons.restaurant),
+            label: 'Comida',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.inventory_2),
+            label: 'Historial',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.shopping_bag),
+            label: 'Cesta',
+          ),
         ],
-      )
+      ),
     );
   }
 }
