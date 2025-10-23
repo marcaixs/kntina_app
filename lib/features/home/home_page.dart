@@ -53,7 +53,7 @@ class _HomePageState extends State<HomePage> {
       case 1:
         return Text('historial'); //todo: afegir pages
       case 2:
-        return CartPage();
+        return CartPage(cartList: cartList,);
       default:
         return const SizedBox.shrink();
     }
