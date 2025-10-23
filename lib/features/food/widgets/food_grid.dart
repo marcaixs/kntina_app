@@ -19,9 +19,7 @@ class FoodGrid extends StatelessWidget {
       itemCount: foodList.length,
       itemBuilder: (context, index) {
         return FoodCard(
-          name: foodList[index]['title'],
-          image: foodList[index]['images'][0],
-          price: foodList[index]['price'].toString(),
+          food:foodList[index],
         );
       },
     );
