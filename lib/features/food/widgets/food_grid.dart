@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kntina_app/food_card.dart';
+import 'package:kntina_app/features/food/widgets/food_card.dart';
 
 class FoodGrid extends StatelessWidget {
   final List foodList;

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'food_grid.dart';
+import '../widgets/food_grid.dart';
 
 class SearchPage extends StatefulWidget {
   final List foodList;

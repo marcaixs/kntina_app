@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kntina_app/food_list_page.dart';
-import 'package:kntina_app/home_page.dart';
+import 'package:kntina_app/features/home/home_page.dart';
 
 void main() {
   runApp(const MainApp());

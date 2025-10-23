@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:kntina_app/food_list_page.dart';
-import 'package:kntina_app/food_service.dart';
-import 'package:kntina_app/search_page.dart';
+import 'package:kntina_app/features/food/presentation/food_list_page.dart';
+import 'package:kntina_app/core/services/food_service.dart';
+import 'package:kntina_app/features/food/presentation/search_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
