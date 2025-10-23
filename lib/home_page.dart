@@ -13,6 +13,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   List _foodList = [];
   bool _isLoading = true;
+  int _selectedIndex = 0;
 
   @override
   void initState() {
@@ -30,6 +31,23 @@ class _HomePageState extends State<HomePage> {
       });
     } catch (e) {
       setState(() => _isLoading = false);
+    }
+  }
+
+  Widget _buildBody() {
+    if (_isLoading) {
+      return const Center(child: CircularProgressIndicator());
+    }
+
+    switch (_selectedIndex) {
+      case 0:
+        return FoodListPage(foodList: _foodList);
+      case 1:
+        return Text('historial'); //todo: afegir pages
+      case 2:
+        return Text('cesta');
+      default:
+        return const SizedBox.shrink();
     }
   }
 
@@ -58,8 +76,22 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
-      body: _isLoading ? Center(child: CircularProgressIndicator())
-      : FoodListPage(foodList: _foodList)
+      body: _buildBody(),
+
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _selectedIndex,
+  onTap: (index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  },
+        items: const [
+          BottomNavigationBarItem(icon: Icon(Icons.restaurant), label: 'Comida'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.inventory_2), label: 'Historial'),
+          BottomNavigationBarItem(icon: Icon(Icons.shopping_bag), label: 'Cesta'),
+        ],
+      )
     );
   }
 }
