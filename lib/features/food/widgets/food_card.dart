@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kntina_app/features/food/presentation/food_detail_page.dart';
 
 class FoodCard extends StatelessWidget {
   final Map food;
@@ -10,7 +11,15 @@ class FoodCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return InkWell(
+      onTap:  () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (_) => FoodDetailPage(food: food),
+          ),
+        );
+      },
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
