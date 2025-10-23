@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 
 class FoodDetailPage extends StatelessWidget {
   final Map food;
-  const FoodDetailPage({super.key, required this.food});
+  final Function addToCart;
+  const FoodDetailPage({super.key, required this.food, required this.addToCart});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +22,7 @@ class FoodDetailPage extends StatelessWidget {
             ),
             Text(food['price'].toString()),
             Text(food['description']),
-            ElevatedButton(onPressed: (){}, child: Text('Añadir a la cesta')),
+            ElevatedButton(onPressed: (){addToCart(food);}, child: Text('Añadir a la cesta')),
           ],
         ),
       ),
