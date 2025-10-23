@@ -13,6 +13,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   List _foodList = [];
+  List cartList = [];
   bool _isLoading = true;
   int _selectedIndex = 0;
 
@@ -33,6 +34,12 @@ class _HomePageState extends State<HomePage> {
     } catch (e) {
       setState(() => _isLoading = false);
     }
+  }
+
+  void addToCart(item){
+    setState(() {
+      cartList.add(item);
+    });
   }
 
   Widget _buildBody() {
