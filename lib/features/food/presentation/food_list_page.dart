@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:kntina_app/features/food/widgets/food_grid.dart';
 
 class FoodListPage extends StatefulWidget {
-  final List foodList; 
+  final List foodList;
 
   const FoodListPage({super.key, required this.foodList});
 
@@ -10,86 +10,63 @@ class FoodListPage extends StatefulWidget {
   State<FoodListPage> createState() => _FoodListPageState();
 }
 
-class _FoodListPageState extends State<FoodListPage> {
-  List _foodList = []; 
-  List _filteredList = [];
+class _FoodListPageState extends State<FoodListPage>
+    with SingleTickerProviderStateMixin {
+  late TabController _tabController;
+  late List _foodList;
 
   @override
   void initState() {
     super.initState();
     _foodList = widget.foodList;
-    _filteredList = _foodList;
+    _tabController = TabController(length: 4, vsync: this);
   }
 
-  void filterContent(String categoryInput) {
-    List filteredContent = _foodList.where((item) {
-      final categoryName = item['category']['name'];
-      return categoryName.contains(categoryInput);
-    }).toList();
+  List _filterByCategory(String category) {
+    if (category == 'Todo') return _foodList;
+    return _foodList
+        .where((item) => item['category']['name'].toString().contains(category)).toList();
+  }
 
-    setState(() {
-      _filteredList = filteredContent;
-    });
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return  Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Column(
-                children: [
-                  IconButton(
-                    onPressed: () {
-                      setState(() {
-                        _filteredList = _foodList;
-                      });
-                    },
-                    icon: Icon(Icons.local_dining, color: Colors.black),
-                  ),
-                  Text('Todo')
-                ],
-              ),
-              Column(
-                children: [
-                  IconButton(
-                    onPressed: () {
-                      filterContent('Pasta');
-                    },
-                    icon: Icon(Icons.dining_sharp, color: Colors.black),
-                  ),
-                  Text('Pasta')
-                ],
-              ),
-              Column(
-                children: [
-                  IconButton(
-                    onPressed: () {
-                      filterContent('Verduras');
-                    },
-                    icon: Icon(Icons.dining_sharp, color: Colors.black),
-                  ),
-                  Text('Verduras')
-                ],
-              ),
-              Column(
-                children: [
-                  IconButton(
-                    onPressed: () {
-                      filterContent('Pescado');
-                    },
-                    icon: Icon(Icons.dining_sharp, color: Colors.black),
-                  ),
-                  Text('Pescado')
-                ],
-              ),
-            ],
+    return Column(
+      children: [
+        TabBar(
+          controller: _tabController,
+          indicatorColor: Colors.green[800],
+          labelColor: Colors.green[800],
+          unselectedLabelColor: Colors.black,
+          tabs: [
+            Tab(icon: Icon(Icons.restaurant_menu), text: 'Todo'),  
+            Tab(icon: Icon(Icons.ramen_dining), text: 'Pasta'),     
+            Tab(icon: Icon(Icons.eco), text: 'Verduras'),         
+            Tab(icon: Icon(Icons.set_meal_outlined), text: 'Pescado'), 
+          ],
+        ),
+        Expanded(
+          child: TabBarView(controller: _tabController, children: [
+          FoodGrid(
+            foodList: _filterByCategory('Todo'),
           ),
-         
-          Expanded(child: FoodGrid(foodList: _filteredList)),
-        ],
-      );
+         FoodGrid(
+            foodList: _filterByCategory('Pasta'),
+          ),
+          FoodGrid(
+            foodList: _filterByCategory('Verduras'),
+          ),
+          FoodGrid(
+            foodList: _filterByCategory('Pescado'),
+          ),
+        ])
+        ),
+      ],
+    );
   }
 }
