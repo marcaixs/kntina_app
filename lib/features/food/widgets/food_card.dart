@@ -3,10 +3,12 @@ import 'package:kntina_app/features/food/presentation/food_detail_page.dart';
 
 class FoodCard extends StatelessWidget {
   final Map food;
+  final Function addToCart;
 
   const FoodCard({
     super.key,
-    required this.food
+    required this.food,
+    required this.addToCart
   });
 
   @override
@@ -16,7 +18,7 @@ class FoodCard extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (_) => FoodDetailPage(food: food),
+            builder: (_) => FoodDetailPage(food: food, addToCart: addToCart,),
           ),
         );
       },

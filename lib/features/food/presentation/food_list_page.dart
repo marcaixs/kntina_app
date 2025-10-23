@@ -3,8 +3,9 @@ import 'package:kntina_app/features/food/widgets/food_grid.dart';
 
 class FoodListPage extends StatefulWidget {
   final List foodList;
+  final Function addToCart;
 
-  const FoodListPage({super.key, required this.foodList});
+  const FoodListPage({super.key, required this.foodList, required this.addToCart});
 
   @override
   State<FoodListPage> createState() => _FoodListPageState();
@@ -54,15 +55,19 @@ class _FoodListPageState extends State<FoodListPage>
           child: TabBarView(controller: _tabController, children: [
           FoodGrid(
             foodList: _filterByCategory('Todo'),
+            addToCart: widget.addToCart,
           ),
          FoodGrid(
             foodList: _filterByCategory('Pasta'),
+            addToCart: widget.addToCart,
           ),
           FoodGrid(
             foodList: _filterByCategory('Verduras'),
+            addToCart: widget.addToCart,
           ),
           FoodGrid(
             foodList: _filterByCategory('Pescado'),
+            addToCart: widget.addToCart,
           ),
         ])
         ),

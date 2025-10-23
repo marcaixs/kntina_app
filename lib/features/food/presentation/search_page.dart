@@ -3,8 +3,9 @@ import '../widgets/food_grid.dart';
 
 class SearchPage extends StatefulWidget {
   final List foodList;
+  final Function addToCart;
 
-  const SearchPage({super.key, required this.foodList});
+  const SearchPage({super.key, required this.foodList, required this.addToCart});
 
   @override
   State<SearchPage> createState() => _SearchPageState();
@@ -50,7 +51,7 @@ class _SearchPageState extends State<SearchPage> {
                 ],
               ),
             )
-          : FoodGrid(foodList: filteredList),
+          : FoodGrid(foodList: filteredList, addToCart: widget.addToCart,),
     );
   }
 }

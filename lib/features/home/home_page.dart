@@ -49,7 +49,7 @@ class _HomePageState extends State<HomePage> {
 
     switch (_selectedIndex) {
       case 0:
-        return FoodListPage(foodList: _foodList);
+        return FoodListPage(foodList: _foodList, addToCart: addToCart,);
       case 1:
         return Text('historial'); //todo: afegir pages
       case 2:
@@ -75,7 +75,7 @@ class _HomePageState extends State<HomePage> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (_) => SearchPage(foodList: _foodList),
+                  builder: (_) => SearchPage(foodList: _foodList, addToCart: addToCart),
                 ),
               );
             },

@@ -3,8 +3,9 @@ import 'package:kntina_app/features/food/widgets/food_card.dart';
 
 class FoodGrid extends StatelessWidget {
   final List foodList;
+  final Function addToCart;
 
-  const FoodGrid({super.key, required this.foodList});
+  const FoodGrid({super.key, required this.foodList, required this.addToCart});
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +21,7 @@ class FoodGrid extends StatelessWidget {
       itemBuilder: (context, index) {
         return FoodCard(
           food:foodList[index],
+          addToCart: addToCart,
         );
       },
     );
