@@ -36,27 +36,22 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
-  void addToCart(item){
+  void addToCart(item) {
     setState(() {
       cartList.add(item);
     });
   }
 
-  Widget _buildBody() {
-    if (_isLoading) {
-      return const Center(child: CircularProgressIndicator());
-    }
+  List<Widget> get pageOptions => [
+    FoodListPage(foodList: _foodList, addToCart: addToCart),
+    Text('historial'),
+    CartPage(cartList: cartList),
+  ];
 
-    switch (_selectedIndex) {
-      case 0:
-        return FoodListPage(foodList: _foodList, addToCart: addToCart,);
-      case 1:
-        return Text('historial'); //todo: afegir pages
-      case 2:
-        return CartPage(cartList: cartList,);
-      default:
-        return const SizedBox.shrink();
-    }
+  void onPageSelected (index){
+    setState(() {
+      _selectedIndex = index;
+    });
   }
 
   @override
@@ -75,21 +70,22 @@ class _HomePageState extends State<HomePage> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (_) => SearchPage(foodList: _foodList, addToCart: addToCart),
+                  builder: (_) =>
+                      SearchPage(foodList: _foodList, addToCart: addToCart),
                 ),
               );
             },
           ),
         ],
       ),
-      body: _buildBody(),
+      body: _isLoading
+          ? Center(child: CircularProgressIndicator())
+          : pageOptions.elementAt(_selectedIndex),
 
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedIndex,
         onTap: (index) {
-          setState(() {
-            _selectedIndex = index;
-          });
+          onPageSelected(index);
         },
         items: const [
           BottomNavigationBarItem(
