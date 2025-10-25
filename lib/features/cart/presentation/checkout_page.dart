@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kntina_app/core/widgets/back_appbar.dart';
 
 class CheckoutPage extends StatelessWidget {
   final double price;
@@ -9,14 +10,7 @@ class CheckoutPage extends StatelessWidget {
     double shipment = 5;
 
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () => Navigator.pop(context),
-        ),
-        title: const Text('Checkout'),
-        centerTitle: false,
-      ),
+      appBar: BackAppbar(title: 'Checkout'),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
