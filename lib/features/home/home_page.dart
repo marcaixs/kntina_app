@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kntina_app/features/auth/profile_page.dart';
+import 'package:kntina_app/features/profile/profile_page.dart';
 import 'package:kntina_app/features/cart/presentation/cart_page.dart';
 import 'package:kntina_app/features/food/presentation/food_list_page.dart';
 import 'package:kntina_app/core/services/food_service.dart';
