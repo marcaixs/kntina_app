@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kntina_app/features/profile/change_password_page.dart';
+import 'package:kntina_app/features/profile/edit_profile_page.dart';
 import 'package:kntina_app/features/profile/information_page.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -100,7 +101,12 @@ class _ProfilePageState extends State<ProfilePage> {
                     leading: Icon(Icons.edit),
                     title: Text('Editar perfil'),
                     trailing: Icon(Icons.arrow_forward),
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (_) => EditProfilePage()),
+                      );
+                    },
                   ),
                   Divider(),
                   ListTile(
