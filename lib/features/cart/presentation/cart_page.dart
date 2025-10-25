@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kntina_app/features/cart/presentation/checkout_page.dart';
 import 'package:kntina_app/features/cart/widgets/cart_list.dart';
 
 class CartPage extends StatefulWidget {
@@ -28,7 +29,15 @@ class _CartPageState extends State<CartPage> {
           Text('Subtotal'),
           Text('${subtotal.toStringAsFixed(2)} €')
         ],),
-      ElevatedButton(onPressed: (){}, child: Text('Checkout'))],
+      ElevatedButton(onPressed: (){
+        Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) =>
+                      CheckoutPage(price: subtotal),
+                ),
+              );
+      }, child: Text('Checkout'))],
     );
   }
 }
