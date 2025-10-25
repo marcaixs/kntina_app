@@ -19,7 +19,7 @@ class CheckoutPage extends StatelessWidget {
             const Text('La entrega se realizará en 24-72h'),
             const SizedBox(height: 24),
 
-            // 🧾 Resumen de precios
+          
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
