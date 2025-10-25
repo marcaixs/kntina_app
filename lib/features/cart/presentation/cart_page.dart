@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kntina_app/features/cart/widgets/cart_list.dart';
 
 class CartPage extends StatefulWidget {
   final List cartList;
@@ -9,8 +10,25 @@ class CartPage extends StatefulWidget {
 }
 
 class _CartPageState extends State<CartPage> {
+  double get subtotal {
+    double sum = 0;
+    for (var item in widget.cartList) {
+      sum += (item['price'] ?? 0).toDouble();
+    }
+    return sum;
+  }
+
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Column(
+      children: [
+        Expanded(child: CartList(cartList: widget.cartList)),
+        Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+          Text('Subtotal'),
+          Text('${subtotal.toStringAsFixed(2)} €')
+        ],),
+      ElevatedButton(onPressed: (){}, child: Text('Checkout'))],
+    );
   }
 }
