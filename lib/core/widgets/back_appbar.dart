@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class BackAppbar extends StatelessWidget {
+class BackAppbar extends StatelessWidget implements PreferredSizeWidget{
   final String title;
   const BackAppbar({super.key, required this.title});
 
@@ -15,4 +15,8 @@ class BackAppbar extends StatelessWidget {
         centerTitle: false,
     );
   }
+  
+  @override
+  
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 }
