@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kntina_app/features/profile/change_password_page.dart';
 import 'package:kntina_app/features/profile/information_page.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -18,7 +19,7 @@ class _ProfilePageState extends State<ProfilePage> {
           icon: const Icon(Icons.arrow_back),
           onPressed: () => Navigator.pop(context),
         ),
-        title:Image.asset('assets/images/logo.png', height: 25),
+        title: Image.asset('assets/images/logo.png', height: 25),
       ),
       body: Center(
         child: Column(
@@ -90,64 +91,65 @@ class _ProfilePageState extends State<ProfilePage> {
                 ),
               ],
             ),
-           
-              Expanded(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    ListTile(
-                      leading: Icon(Icons.edit), 
-                      title: Text('Editar perfil'),
-                      trailing: Icon(Icons.arrow_forward),
-                      onTap: () {},
-                    ),
-                    Divider(),
-                    ListTile(
-                      leading: Icon(Icons.lock), 
-                      title: Text('Cambiar contraseña'),
-                      trailing: Icon(Icons.arrow_forward),
-                      onTap: () {},
-                    ),
-                    Divider(),
-                    ListTile(
-                      leading: Icon(Icons.gavel), 
-                      title: Text('Términos y condiciones'),
-                      trailing: Icon(Icons.arrow_forward),
-                      onTap: () {},
-                    ),
-                    Divider(),
-                    ListTile(
-                      leading: Icon(Icons.shield), 
-                      title: Text('Política de privacidad'),
-                      trailing: Icon(Icons.arrow_forward),
-                      onTap: () {},
-                    ),
-                    Divider(),
-                    ListTile(
-                      leading: Icon(Icons.abc) ,                     
-                      title: Text('Información'),
-                      trailing: Icon(Icons.arrow_forward),
-                      onTap: () {
-                        Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (_) =>
-                      InformationPage(),
-                ),
-              );
-                      },
-                    ),
-                    Divider(),
-                    ListTile(
-                      leading: Icon(Icons.logout), 
-                      title: Text('Cerrar sesión'),
-                      trailing: Icon(Icons.arrow_forward),
-                      onTap: () {},
-                    ),
-                  ],
-                ),
+
+            Expanded(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  ListTile(
+                    leading: Icon(Icons.edit),
+                    title: Text('Editar perfil'),
+                    trailing: Icon(Icons.arrow_forward),
+                    onTap: () {},
+                  ),
+                  Divider(),
+                  ListTile(
+                    leading: Icon(Icons.lock),
+                    title: Text('Cambiar contraseña'),
+                    trailing: Icon(Icons.arrow_forward),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (_) => ChangePasswordPage()),
+                      );
+                    },
+                  ),
+                  Divider(),
+                  ListTile(
+                    leading: Icon(Icons.gavel),
+                    title: Text('Términos y condiciones'),
+                    trailing: Icon(Icons.arrow_forward),
+                    onTap: () {},
+                  ),
+                  Divider(),
+                  ListTile(
+                    leading: Icon(Icons.shield),
+                    title: Text('Política de privacidad'),
+                    trailing: Icon(Icons.arrow_forward),
+                    onTap: () {},
+                  ),
+                  Divider(),
+                  ListTile(
+                    leading: Icon(Icons.abc),
+                    title: Text('Información'),
+                    trailing: Icon(Icons.arrow_forward),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (_) => InformationPage()),
+                      );
+                    },
+                  ),
+                  Divider(),
+                  ListTile(
+                    leading: Icon(Icons.logout),
+                    title: Text('Cerrar sesión'),
+                    trailing: Icon(Icons.arrow_forward),
+                    onTap: () {},
+                  ),
+                ],
               ),
-      
+            ),
           ],
         ),
       ),
