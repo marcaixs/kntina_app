@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kntina_app/features/auth/profile_page.dart';
 import 'package:kntina_app/features/cart/presentation/cart_page.dart';
 import 'package:kntina_app/features/food/presentation/food_list_page.dart';
 import 'package:kntina_app/core/services/food_service.dart';
@@ -48,7 +49,7 @@ class _HomePageState extends State<HomePage> {
     CartPage(cartList: cartList),
   ];
 
-  void onPageSelected (index){
+  void onPageSelected(index) {
     setState(() {
       _selectedIndex = index;
     });
@@ -60,9 +61,17 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         leading: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: CircleAvatar(radius: 18),
+          child: InkWell(
+            onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => ProfilePage()));},
+            child: CircleAvatar(radius: 18)),
         ),
-        title: Center(child: Image.asset('assets/images/logo.png', height: 25)),
+        title:  Center(
+            child: Image.asset('assets/images/logo.png', height: 25),
+          ),
+        
         actions: [
           IconButton(
             icon: const Icon(Icons.search, color: Colors.black),
