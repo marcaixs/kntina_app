@@ -5,7 +5,14 @@ import 'package:kntina_app/features/shared/widgets/custom_text_field.dart';
 
 class CheckoutPage extends StatelessWidget {
   final double price;
-  const CheckoutPage({super.key, required this.price});
+  final List? cartList;
+  final VoidCallback? completeOrder;
+  const CheckoutPage({
+    super.key,
+    required this.price,
+    this.cartList,
+    this.completeOrder,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +28,6 @@ class CheckoutPage extends StatelessWidget {
             const Text('La entrega se realizará en 24-72h'),
             const SizedBox(height: 24),
 
-          
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -42,13 +48,8 @@ class CheckoutPage extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text(
-                  'Total',
-                 
-                ),
-                Text(
-                  '${(price + shipment).toStringAsFixed(2)} €',
-                ),
+                const Text('Total'),
+                Text('${(price + shipment).toStringAsFixed(2)} €'),
               ],
             ),
 
@@ -85,16 +86,23 @@ class CheckoutPage extends StatelessWidget {
           ],
         ),
       ),
-    bottomNavigationBar: Padding(
-    padding: const EdgeInsets.all(20.0),
-    child: SizedBox(
-      child: CustomButton(
-        onPressed: () {
-          ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Pedido realizado con éxito')),);
-        },
-        text: 'Aceptar y pagar',
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: SizedBox(
+          child: CustomButton(
+            onPressed: () {
+              if (completeOrder != null) {
+                completeOrder!();
+              }
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text('Pedido realizado con éxito')),
+              );
+              Navigator.of(context).popUntil((route) => route.isFirst);
+            },
+            text: 'Aceptar y pagar',
+          ),
+        ),
       ),
-    )));
+    );
   }
 }
