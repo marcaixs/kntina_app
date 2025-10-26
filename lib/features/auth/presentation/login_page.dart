@@ -5,6 +5,7 @@ import 'package:kntina_app/features/auth/presentation/signup_page.dart';
 import 'package:kntina_app/features/home/home_page.dart';
 import 'package:kntina_app/features/shared/widgets/custom_button.dart';
 import 'package:kntina_app/features/shared/widgets/custom_text_field.dart';
+import 'package:kntina_app/user.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -22,6 +23,7 @@ class _LoginPageState extends State<LoginPage> {
     // si les dades introduides per l'usuari conicideixen, ruta a la main page
     if (_formLoginKey.currentState!.validate()) {
       _formLoginKey.currentState!.save();
+      if(_mail == testUser.email && _password == testUser.password)
       {
         goToMainPage();
       }
