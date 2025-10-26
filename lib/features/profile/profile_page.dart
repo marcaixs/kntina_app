@@ -78,13 +78,10 @@ class _ProfilePageState extends State<ProfilePage> {
                                         vertical: 2,
                                       ),
                                       decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(
-                                          20,
-                                        ), 
+                                        borderRadius: BorderRadius.circular(20),
                                         border: Border.all(
-                                          color:
-                                              Colors.green,
-                                          width: 2, 
+                                          color: Colors.green,
+                                          width: 2,
                                         ),
                                       ),
                                       child: Text(
@@ -113,13 +110,10 @@ class _ProfilePageState extends State<ProfilePage> {
                                         vertical: 2,
                                       ),
                                       decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(
-                                          20,
-                                        ), 
+                                        borderRadius: BorderRadius.circular(20),
                                         border: Border.all(
-                                          color:
-                                              Colors.green,
-                                          width: 2, 
+                                          color: Colors.green,
+                                          width: 2,
                                         ),
                                       ),
                                       child: Text(
@@ -198,7 +192,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     ListTile(
                       dense: true,
                       visualDensity: VisualDensity.compact,
-                      leading: Icon(Icons.abc),
+                      leading: ImageIcon(AssetImage('assets/images/icon.png')),
                       title: Text('Información'),
                       trailing: Icon(Icons.arrow_forward),
                       onTap: () {
