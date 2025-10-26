@@ -83,6 +83,9 @@ class _LoginPageState extends State<LoginPage> {
                       if (value == null || value.isEmpty) {
                         return "Por favor introduce un correo electronico";
                       }
+                      if (!value.contains('@') || !value.contains('.')) {
+                              return "Por favor introduce un correo electrónico válido";
+                            }
                       return null;
                     },
                     onSaved: (value) => _mail = value!,
