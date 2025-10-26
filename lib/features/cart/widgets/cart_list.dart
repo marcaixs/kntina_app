@@ -12,7 +12,12 @@ class CartList extends StatelessWidget {
         padding: const EdgeInsets.all(8),
         itemCount: cartList.length,
         itemBuilder: (BuildContext context, int index) {
-          return CartFoodCard(item: cartList[index]);
+          return Column(
+            children: [
+              CartFoodCard(item: cartList[index]),
+              SizedBox(height: 20,)
+            ],
+          );
         },
       ),
     );
