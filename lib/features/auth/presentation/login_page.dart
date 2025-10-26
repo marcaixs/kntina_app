@@ -7,157 +7,148 @@ import 'package:kntina_app/features/shared/widgets/custom_button.dart';
 import 'package:kntina_app/features/shared/widgets/custom_text_field.dart';
 import 'package:kntina_app/user.dart';
 
-class LoginPage extends StatefulWidget {
+class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
-}
+  Widget build(BuildContext context) {
+    final _formLoginKey = GlobalKey<FormState>();
+    String _mail = '';
+    String _password = '';
 
-class _LoginPageState extends State<LoginPage> {
-  final _formLoginKey = GlobalKey<FormState>();
-  String _mail = '';
-  String _password = '';
-
-  void setLogin() {
-    
-    if (_formLoginKey.currentState!.validate()) {
-      _formLoginKey.currentState!.save();
-      if(_mail == testUser.email && _password == testUser.password)
-      {
-        goToMainPage();
-      }
-    
-        ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Correo o contraseña incorrectos')),
+     void goToMainPage() {
+      Navigator.of(context).push(
+        MaterialPageRoute<void>(builder: (context) => const HomePage()),
       );
     }
-  }
 
-  void goToMainPage() {
-    Navigator.of(
-      context,
-    ).push(MaterialPageRoute<void>(builder: (context) => const HomePage()));
-  }
+    void setLogin() {
+      if (_formLoginKey.currentState!.validate()) {
+        _formLoginKey.currentState!.save();
+        if (_mail == testUser.email && _password == testUser.password) {
+          goToMainPage();
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('Correo o contraseña incorrectos')),
+          );
+        }
+      }
+    }
 
-  void goToSignUp() {
-    Navigator.of(
-      context,
-    ).push(MaterialPageRoute<void>(builder: (context) => const SignupPage()));
-  }
+    void goToSignUp() {
+      Navigator.of(context).push(
+        MaterialPageRoute<void>(builder: (context) => const SignupPage()),
+      );
+    }
 
-  void goToPassword() {
-    Navigator.of(context).push(
-      MaterialPageRoute<void>(
-        builder: (context) => const RecoverPasswordPage(),
+    void goToPassword() {
+      Navigator.of(context).push(
+        MaterialPageRoute<void>(builder: (context) => const RecoverPasswordPage()),
+      );
+    }
+
+    return Scaffold(
+      body: DecoratedBox(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("assets/images/login.png"),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(12.0),
+          child: Column(
+            children: [
+              SizedBox(height: 50),
+              Image.asset("assets/images/logo.png", width: 200),
+              SizedBox(height: 20),
+              Text('Nos alegra que estés de vuelta!'),
+              SizedBox(height: 20),
+              Expanded(
+                child: Form(
+                  key: _formLoginKey,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      CustomTextField(
+                        label: 'Correo',
+                        icon: Icons.mail,
+                        keyboardType: TextInputType.emailAddress,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return "Por favor introduce un correo electronico";
+                          }
+                          if (!value.contains('@') || !value.contains('.')) {
+                            return "Por favor introduce un correo electrónico válido";
+                          }
+                          return null;
+                        },
+                        onSaved: (value) => _mail = value!,
+                      ),
+                      SizedBox(height: 16),
+                      CustomTextField(
+                        label: 'Contraseña',
+                        icon: Icons.lock,
+                        isPassword: true,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return "Por favor introduce una contraseña";
+                          }
+                          return null;
+                        },
+                        onSaved: (value) => _password = value!,
+                      ),
+                      SizedBox(height: 20),
+                      RichText(
+                        text: TextSpan(
+                          children: [
+                            TextSpan(
+                              text: 'He olvidado mi contraseña ',
+                              style: TextStyle(color: Colors.black),
+                            ),
+                            TextSpan(
+                              text: 'recuperar',
+                              style: TextStyle(color: Colors.blue),
+                              recognizer: TapGestureRecognizer()..onTap = goToPassword,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              Column(
+                children: [
+                  CustomButton(
+                    onPressed: setLogin,
+                    text: 'Iniciar sesión',
+                  ),
+                  SizedBox(height: 10),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text('¿Aún no tienes cuenta? '),
+                      RichText(
+                        text: TextSpan(
+                          children: [
+                            TextSpan(
+                              text: '¡Únete a Kntina!',
+                              style: TextStyle(color: Colors.blue),
+                              recognizer: TapGestureRecognizer()..onTap = goToSignUp,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 20),
+                ],
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
-
-  @override
-  Widget build(BuildContext context) {
-  return Scaffold(
-  body: DecoratedBox(
-    decoration: BoxDecoration(
-      image: DecorationImage(
-        image: AssetImage("assets/images/login.png"),
-        fit: BoxFit.cover,
-      ),
-    ),
-    child: Padding(
-      padding: const EdgeInsets.all(12.0),
-      child: Column(
-        children: [
-          SizedBox(height: 50),
-          Image.asset("assets/images/logo.png", width: 200),
-          SizedBox(height: 20),
-          Text('Nos alegra que estés de vuelta!'),
-          SizedBox(height: 20),
-          Expanded(
-            child: Form(
-              key: _formLoginKey,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  CustomTextField(
-                    label: 'Correo',
-                    icon: Icons.mail,
-                    keyboardType: TextInputType.emailAddress,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return "Por favor introduce un correo electronico";
-                      }
-                      if (!value.contains('@') || !value.contains('.')) {
-                              return "Por favor introduce un correo electrónico válido";
-                            }
-                      return null;
-                    },
-                    onSaved: (value) => _mail = value!,
-                  ),
-                  SizedBox(height: 16),
-                  CustomTextField(
-                    label: 'Contraseña',
-                    icon: Icons.lock,
-                    isPassword: true,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return "Por favor introduce una contraseña";
-                      }
-                      return null;
-                    },
-                    onSaved: (value) => _password = value!,
-                  ),
-                  SizedBox(height: 20),
-                  RichText(
-                    text: TextSpan(
-                      children: [
-                        TextSpan(
-                          text: 'He olvidado mi contraseña ',
-                          style: TextStyle(color: Colors.black),
-                        ),
-                        TextSpan(
-                          text: 'recuperar',
-                          style: TextStyle(color: Colors.blue),
-                          recognizer: TapGestureRecognizer()..onTap = goToPassword,
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Column(
-            children: [
-              CustomButton(
-                onPressed: setLogin,
-                text: 'Iniciar sesión',
-              ),
-              SizedBox(height: 10),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text('¿Aún no tienes cuenta? '),
-                  RichText(
-                    text: TextSpan(
-                      children: [
-                        TextSpan(
-                          text: '¡Únete a Kntina!',
-                          style: TextStyle(color: Colors.blue),
-                          recognizer: TapGestureRecognizer()..onTap = goToSignUp,
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(height: 20),
-            ],
-          ),
-        ],
-      ),
-    ),
-  ),
-);
-
-}}
+}
