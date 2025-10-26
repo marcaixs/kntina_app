@@ -20,7 +20,7 @@ class _LoginPageState extends State<LoginPage> {
   String _password = '';
 
   void setLogin() {
-    // si les dades introduides per l'usuari conicideixen, ruta a la main page
+    
     if (_formLoginKey.currentState!.validate()) {
       _formLoginKey.currentState!.save();
       if(_mail == testUser.email && _password == testUser.password)
@@ -30,14 +30,12 @@ class _LoginPageState extends State<LoginPage> {
     }
   }
 
-  // ruta a la main page
   void goToMainPage() {
     Navigator.of(
       context,
     ).push(MaterialPageRoute<void>(builder: (context) => const HomePage()));
   }
 
-  // ruta a signup
   void goToSignUp() {
     Navigator.of(
       context,
