@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kntina_app/core/widgets/back_appbar.dart';
 import 'package:kntina_app/features/shared/widgets/custom_button.dart';
+import 'package:kntina_app/features/shared/widgets/custom_text_field.dart';
 
 class RecoverPasswordPage extends StatelessWidget {
   const RecoverPasswordPage({super.key});
@@ -20,8 +21,10 @@ class RecoverPasswordPage extends StatelessWidget {
                 SizedBox(height: 50),
                 Padding(
                   padding: const EdgeInsets.all(30.0),
-                  child: TextFormField(
-                    decoration: InputDecoration(label: Text('Correo')),
+                  child: CustomTextField(
+                    label: 'Correo',
+                    icon: Icons.mail,
+                    keyboardType: TextInputType.emailAddress,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return "Por favor introduce un correo electronico";
