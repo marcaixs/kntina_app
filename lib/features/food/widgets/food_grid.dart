@@ -11,6 +11,7 @@ class FoodGrid extends StatelessWidget {
   Widget build(BuildContext context) {
     return GridView.builder(
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        mainAxisExtent: 320,
         crossAxisCount: 2,
         crossAxisSpacing: 12,
         mainAxisSpacing: 12,
@@ -18,10 +19,7 @@ class FoodGrid extends StatelessWidget {
       ),
       itemCount: foodList.length,
       itemBuilder: (context, index) {
-        return FoodCard(
-          food:foodList[index],
-          addToCart: addToCart,
-        );
+        return FoodCard(food: foodList[index], addToCart: addToCart);
       },
     );
   }
