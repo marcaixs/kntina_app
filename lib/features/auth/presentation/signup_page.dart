@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kntina_app/features/shared/widgets/custom_button.dart';
 
 class SignupPage extends StatefulWidget {
   const SignupPage({super.key});
@@ -108,9 +109,9 @@ class SignupPageState extends State<SignupPage> {
 
                 Column(
                   children: [
-                    ElevatedButton(
+                    CustomButton(
                       onPressed: () {},
-                      child: Text('Crear cuenta'),
+                      text: 'Crear cuenta',
                     ),
                   ],
                 ),
