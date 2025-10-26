@@ -21,23 +21,30 @@ class _CartPageState extends State<CartPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Expanded(child: CartList(cartList: widget.cartList)),
-        Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-          Text('Subtotal'),
-          Text('${subtotal.toStringAsFixed(2)} €')
-        ],),
-      ElevatedButton(onPressed: (){
-        Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (_) =>
-                      CheckoutPage(price: subtotal),
-                ),
-              );
-      }, child: Text('Checkout'))],
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Column(
+        children: [
+          Expanded(child: CartList(cartList: widget.cartList)),
+          Divider(),
+          Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+            Text('Subtotal'),
+            Text('${subtotal.toStringAsFixed(2)} €')
+          ],),
+        Container(
+          height: 100,
+          child: ElevatedButton(onPressed: (){
+            Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) =>
+                          CheckoutPage(price: subtotal),
+                    ),
+                  );
+          }, child: Text('Checkout')),
+        )],
+      ),
     );
   }
 }
