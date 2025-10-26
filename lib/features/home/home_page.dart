@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:kntina_app/features/orders/presentation/orders_page.dart';
 import 'package:kntina_app/features/profile/profile_page.dart';
 import 'package:kntina_app/features/cart/presentation/cart_page.dart';
 import 'package:kntina_app/features/food/presentation/food_list_page.dart';
 import 'package:kntina_app/core/services/food_service.dart';
 import 'package:kntina_app/features/food/presentation/search_page.dart';
+import 'package:kntina_app/user.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -44,8 +46,8 @@ class _HomePageState extends State<HomePage> {
   }
 
   List<Widget> get pageOptions => [
-    FoodListPage(foodList: _foodList, addToCart: addToCart),
-    Text('historial'),
+    FoodListPage(foodList: _foodList, addToCart: addToCart),  
+    OrdersPage(orderList: testUser.orderHistory),
     CartPage(cartList: cartList),
   ];
 
