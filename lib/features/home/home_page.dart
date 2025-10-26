@@ -39,19 +39,44 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
-void addToCart(item) {
-    bool itemExists = cartList.any((cartItem) => cartItem['id'] == item['id']); 
+  void addToCart(item) {
+    bool itemExists = cartList.any((cartItem) => cartItem['id'] == item['id']);
     if (!itemExists) {
       setState(() {
-        cartList.add(item);
-      }); 
+        Map cartItem = Map.from(item);
+        cartItem['quantity'] = 1;
+        cartList.add(cartItem);
+      });
     }
   }
 
+  void updateCartItemQuantity(int itemId, int newQuantity) {
+    setState(() {
+      int index = cartList.indexWhere((cartItem) => cartItem['id'] == itemId);
+      if (index != -1) {
+        if (newQuantity <= 0) {
+          cartList.removeAt(index);
+        } else {
+          cartList[index]['quantity'] = newQuantity;
+        }
+      }
+    });
+  }
+
+  void removeFromCart(int itemId) {
+    setState(() {
+      cartList.removeWhere((cartItem) => cartItem['id'] == itemId);
+    });
+  }
+
   List<Widget> get pageOptions => [
-    FoodListPage(foodList: _foodList, addToCart: addToCart),  
+    FoodListPage(foodList: _foodList, addToCart: addToCart),
     OrdersPage(orderList: testUser.orderHistory),
-    CartPage(cartList: cartList),
+    CartPage(
+      cartList: cartList,
+      updateQuantity: updateCartItemQuantity,
+      removeItem: removeFromCart,
+    ),
   ];
 
   void onPageSelected(index) {
@@ -68,15 +93,19 @@ void addToCart(item) {
           padding: const EdgeInsets.all(8.0),
           child: InkWell(
             onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (_) => ProfilePage()));},
-            child: CircleAvatar(radius: 18, backgroundImage: AssetImage(testUser.profileImage),)),
-        ),
-        title:  Center(
-            child: Image.asset('assets/images/logo.png', height: 25),
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => ProfilePage()),
+              );
+            },
+            child: CircleAvatar(
+              radius: 18,
+              backgroundImage: AssetImage(testUser.profileImage),
+            ),
           ),
-        
+        ),
+        title: Center(child: Image.asset('assets/images/logo.png', height: 25)),
+
         actions: [
           IconButton(
             icon: const Icon(Icons.search, color: Colors.black),
