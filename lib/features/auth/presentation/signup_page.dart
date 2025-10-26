@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:kntina_app/features/auth/presentation/login_page.dart';
 import 'package:kntina_app/features/shared/widgets/custom_button.dart';
 import 'package:kntina_app/features/shared/widgets/custom_text_field.dart';
+import 'package:kntina_app/user.dart';
 
 class SignupPage extends StatefulWidget {
   const SignupPage({super.key});
@@ -18,9 +19,27 @@ class SignupPageState extends State<SignupPage> {
   String _username = '';
   String _password = '';
 
+  bool _termsAccepted = false;
+
   void setSignup() {
+    if (!_termsAccepted) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Debes aceptar los términos y condiciones')),
+      );
+      return;
+    }
+
     if (_formSignupKey.currentState!.validate()) {
       _formSignupKey.currentState!.save();
+
+      testUser.name = _username;
+      testUser.phone = _tel;
+      testUser.email = _mail;
+      testUser.password = _password;
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Perfil registrado correctamente')),
+      );
     }
   }
 
@@ -108,13 +127,24 @@ class SignupPageState extends State<SignupPage> {
                 Spacer(),
                 Row(
                   children: [
-                    Checkbox(value: false, onChanged: (_) {}),
-                    Expanded(child: Text('He leído y acepto los términos y condiciones y la política de privacidad')),
+                    Checkbox(
+                      value: _termsAccepted,
+                      onChanged: (value) {
+                        setState(() {
+                          _termsAccepted = value!;
+                        });
+                      },
+                    ),
+                    Expanded(
+                      child: Text(
+                        'He leído y acepto los términos y condiciones y la política de privacidad',
+                      ),
+                    ),
                   ],
                 ),
-               SizedBox(height: 10,),
-                CustomButton(onPressed: () {}, text: 'Crear cuenta'),
-                SizedBox(height: 10,),
+                SizedBox(height: 10),
+                CustomButton(onPressed: setSignup, text: 'Crear cuenta'),
+                SizedBox(height: 10),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -134,7 +164,6 @@ class SignupPageState extends State<SignupPage> {
                                 );
                               },
                           ),
-                          
                         ],
                       ),
                     ),
