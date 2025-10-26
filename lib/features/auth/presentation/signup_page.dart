@@ -2,6 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:kntina_app/features/auth/presentation/login_page.dart';
 import 'package:kntina_app/features/shared/widgets/custom_button.dart';
+import 'package:kntina_app/features/shared/widgets/custom_text_field.dart';
 
 class SignupPage extends StatefulWidget {
   const SignupPage({super.key});
@@ -61,34 +62,39 @@ class SignupPageState extends State<SignupPage> {
                       key: _formSignupKey,
                       child: Column(
                         children: [
-                          TextFormField(
-                            decoration: InputDecoration(
-                              labelText: 'Nombre y apellidos',
-                            ),
+                          CustomTextField(
+                            label: 'Nombre y apellidos',
+                            icon: Icons.person,
                             validator: (value) => value!.isEmpty
                                 ? "Por favor introduce un nombre de usuario"
                                 : null,
                             onSaved: (value) => _username = value!,
                           ),
-                          TextFormField(
-                            decoration: InputDecoration(labelText: 'Teléfono'),
+                          SizedBox(height: 16),
+                          CustomTextField(
+                            label: 'Teléfono',
+                            icon: Icons.phone,
+                            keyboardType: TextInputType.phone,
                             validator: (value) => value!.isEmpty
                                 ? "Por favor introduce un teléfono"
                                 : null,
                             onSaved: (value) => _tel = value!,
                           ),
-                          TextFormField(
-                            decoration: InputDecoration(labelText: 'Correo'),
+                          SizedBox(height: 16),
+                          CustomTextField(
+                            label: 'Correo',
+                            icon: Icons.mail,
+                            keyboardType: TextInputType.emailAddress,
                             validator: (value) => value!.isEmpty
                                 ? "Por favor introduce un correo electrónico"
                                 : null,
                             onSaved: (value) => _mail = value!,
                           ),
-                          TextFormField(
-                            decoration: InputDecoration(
-                              labelText: 'Contraseña',
-                            ),
-                            obscureText: true,
+                          SizedBox(height: 16),
+                          CustomTextField(
+                            label: 'Contraseña',
+                            icon: Icons.lock,
+                            isPassword: true,
                             validator: (value) => value!.isEmpty
                                 ? "Por favor introduce una contraseña"
                                 : null,
