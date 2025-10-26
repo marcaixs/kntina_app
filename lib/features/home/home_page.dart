@@ -39,10 +39,13 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
-  void addToCart(item) {
-    setState(() {
-      cartList.add(item);
-    });
+void addToCart(item) {
+    bool itemExists = cartList.any((cartItem) => cartItem['id'] == item['id']); 
+    if (!itemExists) {
+      setState(() {
+        cartList.add(item);
+      }); 
+    }
   }
 
   List<Widget> get pageOptions => [
