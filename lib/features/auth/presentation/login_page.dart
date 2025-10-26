@@ -16,9 +16,10 @@ class LoginPage extends StatelessWidget {
     String _mail = '';
     String _password = '';
 
-     void goToMainPage() {
-      Navigator.of(context).push(
-        MaterialPageRoute<void>(builder: (context) => const HomePage()),
+    void goToMainPage() {
+      Navigator.of(context).pushAndRemoveUntil(
+        MaterialPageRoute(builder: (context) => const HomePage()),
+        (Route<dynamic> route) => false,
       );
     }
 
@@ -36,14 +37,16 @@ class LoginPage extends StatelessWidget {
     }
 
     void goToSignUp() {
-      Navigator.of(context).push(
-        MaterialPageRoute<void>(builder: (context) => const SignupPage()),
-      );
+      Navigator.of(
+        context,
+      ).push(MaterialPageRoute<void>(builder: (context) => const SignupPage()));
     }
 
     void goToPassword() {
       Navigator.of(context).push(
-        MaterialPageRoute<void>(builder: (context) => const RecoverPasswordPage()),
+        MaterialPageRoute<void>(
+          builder: (context) => const RecoverPasswordPage(),
+        ),
       );
     }
 
@@ -109,7 +112,8 @@ class LoginPage extends StatelessWidget {
                             TextSpan(
                               text: 'recuperar',
                               style: TextStyle(color: Colors.blue),
-                              recognizer: TapGestureRecognizer()..onTap = goToPassword,
+                              recognizer: TapGestureRecognizer()
+                                ..onTap = goToPassword,
                             ),
                           ],
                         ),
@@ -120,10 +124,7 @@ class LoginPage extends StatelessWidget {
               ),
               Column(
                 children: [
-                  CustomButton(
-                    onPressed: setLogin,
-                    text: 'Iniciar sesión',
-                  ),
+                  CustomButton(onPressed: setLogin, text: 'Iniciar sesión'),
                   SizedBox(height: 10),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -135,7 +136,8 @@ class LoginPage extends StatelessWidget {
                             TextSpan(
                               text: '¡Únete a Kntina!',
                               style: TextStyle(color: Colors.blue),
-                              recognizer: TapGestureRecognizer()..onTap = goToSignUp,
+                              recognizer: TapGestureRecognizer()
+                                ..onTap = goToSignUp,
                             ),
                           ],
                         ),
