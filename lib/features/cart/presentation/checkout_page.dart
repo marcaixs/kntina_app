@@ -89,7 +89,10 @@ class CheckoutPage extends StatelessWidget {
     padding: const EdgeInsets.all(20.0),
     child: SizedBox(
       child: CustomButton(
-        onPressed: () {},
+        onPressed: () {
+          ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Pedido realizado con éxito')),);
+        },
         text: 'Aceptar y pagar',
       ),
     )));
