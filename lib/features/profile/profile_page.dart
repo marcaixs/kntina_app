@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:kntina_app/features/profile/change_password_page.dart';
 import 'package:kntina_app/features/profile/edit_profile_page.dart';
 import 'package:kntina_app/features/profile/information_page.dart';
+import 'package:kntina_app/features/profile/widgets/profile_list_item.dart';
 import 'package:kntina_app/user.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -141,12 +142,9 @@ class _ProfilePageState extends State<ProfilePage> {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    ListTile(
-                      dense: true,
-                      visualDensity: VisualDensity.compact,
-                      leading: Icon(Icons.edit),
-                      title: Text('Editar perfil'),
-                      trailing: Icon(Icons.arrow_forward),
+                    ProfileListItem(
+                      icon: Icons.edit,
+                      title: 'Editar perfil',
                       onTap: () {
                         Navigator.push(
                           context,
@@ -154,13 +152,9 @@ class _ProfilePageState extends State<ProfilePage> {
                         );
                       },
                     ),
-                    Divider(),
-                    ListTile(
-                      dense: true,
-                      visualDensity: VisualDensity.compact,
-                      leading: Icon(Icons.lock),
-                      title: Text('Cambiar contraseña'),
-                      trailing: Icon(Icons.arrow_forward),
+                    ProfileListItem(
+                      icon: Icons.lock,
+                      title: 'Cambiar contraseña',
                       onTap: () {
                         Navigator.push(
                           context,
@@ -170,31 +164,17 @@ class _ProfilePageState extends State<ProfilePage> {
                         );
                       },
                     ),
-                    Divider(),
-                    ListTile(
-                      dense: true,
-                      visualDensity: VisualDensity.compact,
-                      leading: Icon(Icons.gavel),
-                      title: Text('Términos y condiciones'),
-                      trailing: Icon(Icons.arrow_forward),
-                      onTap: () {},
+                    ProfileListItem(
+                      icon: Icons.gavel,
+                      title: 'Términos y condiciones',
                     ),
-                    Divider(),
-                    ListTile(
-                      dense: true,
-                      visualDensity: VisualDensity.compact,
-                      leading: Icon(Icons.shield),
-                      title: Text('Política de privacidad'),
-                      trailing: Icon(Icons.arrow_forward),
-                      onTap: () {},
+                    ProfileListItem(
+                      icon: Icons.shield,
+                      title: 'Política de privacidad',
                     ),
-                    Divider(),
-                    ListTile(
-                      dense: true,
-                      visualDensity: VisualDensity.compact,
-                      leading: ImageIcon(AssetImage('assets/images/icon.png')),
-                      title: Text('Información'),
-                      trailing: Icon(Icons.arrow_forward),
+                    ProfileListItem(
+                      imageIcon: ImageIcon(AssetImage('assets/images/icon.png')),
+                      title: 'Información',
                       onTap: () {
                         Navigator.push(
                           context,
@@ -202,14 +182,10 @@ class _ProfilePageState extends State<ProfilePage> {
                         );
                       },
                     ),
-                    Divider(),
-                    ListTile(
-                      dense: true,
-                      visualDensity: VisualDensity.compact,
-                      leading: Icon(Icons.logout),
-                      title: Text('Cerrar sesión'),
-                      trailing: Icon(Icons.arrow_forward),
-                      onTap: () {},
+                    ProfileListItem(
+                      icon: Icons.logout,
+                      title: 'Cerrar sesión',
+                      showDivider: false,
                     ),
                   ],
                 ),
