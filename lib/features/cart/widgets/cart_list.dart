@@ -7,19 +7,17 @@ class CartList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: ListView.builder(
-        padding: const EdgeInsets.all(8),
-        itemCount: cartList.length,
-        itemBuilder: (BuildContext context, int index) {
-          return Column(
-            children: [
-              CartFoodCard(item: cartList[index]),
-              SizedBox(height: 20,)
-            ],
-          );
-        },
-      ),
+    return ListView.builder(
+      padding: const EdgeInsets.all(8),
+      itemCount: cartList.length,
+      itemBuilder: (BuildContext context, int index) {
+        return Column(
+          children: [
+            CartFoodCard(item: cartList[index]),
+            SizedBox(height: 20,)
+          ],
+        );
+      },
     );
   }
 }

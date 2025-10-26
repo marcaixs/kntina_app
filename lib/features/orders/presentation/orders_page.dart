@@ -12,13 +12,11 @@ class OrdersPage extends StatefulWidget {
 class _OrdersPageState extends State<OrdersPage> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: ListView.builder(
-        itemCount: widget.orderList.length,
-        itemBuilder: (BuildContext context, int index) {
-          return OrderListRows(order: widget.orderList[index],);
-        },
-      ),
+    return ListView.builder(
+      itemCount: widget.orderList.length,
+      itemBuilder: (BuildContext context, int index) {
+        return OrderListRows(order: widget.orderList[index],);
+      },
     );
   }
 }
