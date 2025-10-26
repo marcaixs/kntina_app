@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kntina_app/features/shared/widgets/custom_button.dart';
 
 class FoodDetailPage extends StatelessWidget {
   final Map food;
@@ -47,11 +48,11 @@ class FoodDetailPage extends StatelessWidget {
               ],
             ),
             Center(
-              child: ElevatedButton(
+              child: CustomButton(
                 onPressed: () {
                   addToCart(food);
                 },
-                child: Text('Añadir a la cesta'),
+                text: 'Añadir a la cesta',
               ),
             ),
           ],
