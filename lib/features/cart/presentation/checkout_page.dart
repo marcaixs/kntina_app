@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kntina_app/core/widgets/back_appbar.dart';
+import 'package:kntina_app/features/shared/widgets/back_appbar.dart';
 import 'package:kntina_app/features/shared/widgets/custom_button.dart';
 import 'package:kntina_app/features/shared/widgets/custom_text_field.dart';
 
