@@ -27,7 +27,10 @@ class RecoverPasswordPage extends StatelessWidget {
                     keyboardType: TextInputType.emailAddress,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return "Por favor introduce un correo electronico";
+                        return "Por favor introduce tu correo electrónico";
+                      }
+                      if (!value.contains('@') || !value.contains('.')) {
+                        return "Por favor introduce un correo electrónico válido";
                       }
                       return null;
                     },
