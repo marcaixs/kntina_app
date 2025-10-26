@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kntina_app/core/widgets/back_appbar.dart';
+import 'package:kntina_app/features/shared/widgets/custom_button.dart';
 
 class EditProfilePage extends StatelessWidget {
   const EditProfilePage({super.key});
@@ -61,13 +62,9 @@ class EditProfilePage extends StatelessWidget {
                   ),
                 ),
               ],),
-            ElevatedButton(
+            CustomButton(
               onPressed: () {},
-              style: ElevatedButton.styleFrom(
-                minimumSize: Size(250, 30),
-                backgroundColor: Colors.green
-              ),
-              child: Text('Guardar cambios'),
+              text:'Guardar cambios',
             ),],
           ),
         ),

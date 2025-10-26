@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kntina_app/core/widgets/back_appbar.dart';
+import 'package:kntina_app/features/shared/widgets/custom_button.dart';
 
 class ChangePasswordPage extends StatelessWidget {
   const ChangePasswordPage({super.key});
@@ -26,7 +27,7 @@ class ChangePasswordPage extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 16),
-            
+
                   TextFormField(
                     obscureText: true,
                     decoration: const InputDecoration(
@@ -36,7 +37,7 @@ class ChangePasswordPage extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 16),
-            
+
                   TextFormField(
                     obscureText: true,
                     decoration: const InputDecoration(
@@ -48,20 +49,10 @@ class ChangePasswordPage extends StatelessWidget {
                 ],
               ),
             ),
-            ElevatedButton(
-            onPressed: () {},
-            style: ElevatedButton.styleFrom(
-              minimumSize: Size(250, 30),
-              backgroundColor: Colors.green
-            ),
-            child: Text('Guardar cambios'),
-          ),
+            CustomButton(onPressed: () {}, text: 'Guardar cambios'),
           ],
         ),
       ),
-    
-        
-        );
-  
+    );
   }
 }
