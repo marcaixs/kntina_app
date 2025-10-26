@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kntina_app/features/cart/presentation/checkout_page.dart';
 import 'package:kntina_app/features/cart/widgets/cart_list.dart';
+import 'package:kntina_app/features/shared/widgets/custom_button.dart';
 
 class CartPage extends StatefulWidget {
   final List cartList;
@@ -19,31 +20,38 @@ class _CartPageState extends State<CartPage> {
     return sum;
   }
 
-  @override
+ @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(
         children: [
-          Expanded(child: CartList(cartList: widget.cartList)),
+          Expanded(
+            child: CartList(cartList: widget.cartList),
+          ),
           Divider(),
-          Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-            Text('Subtotal'),
-            Text('${subtotal.toStringAsFixed(2)} €')
-          ],),
-        Container(
-          height: 100,
-          child: ElevatedButton(onPressed: (){
-            Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (_) =>
-                          CheckoutPage(price: subtotal),
-                    ),
-                  );
-          }, child: Text('Checkout')),
-        )],
+              Text('Subtotal', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+              Text('${subtotal.toStringAsFixed(2)} €', style: TextStyle(fontSize: 16, color: Colors.green)),
+            ],
+          ),
+          SizedBox(height: 50),
+          SizedBox(
+            child: CustomButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => CheckoutPage(price: subtotal),
+                  ),
+                );
+              },
+              text: 'Checkout',
+            ),
+          ),
+        ],
       ),
     );
   }
