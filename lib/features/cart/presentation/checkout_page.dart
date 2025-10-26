@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kntina_app/core/widgets/back_appbar.dart';
+import 'package:kntina_app/features/shared/widgets/custom_button.dart';
 
 class CheckoutPage extends StatelessWidget {
   final double price;
@@ -70,10 +71,9 @@ class CheckoutPage extends StatelessWidget {
     bottomNavigationBar: Padding(
     padding: const EdgeInsets.all(20.0),
     child: SizedBox(
-      width: double.infinity,
-      child: ElevatedButton(
+      child: CustomButton(
         onPressed: () {},
-        child: Text('Aceptar y pagar'),
+        text: 'Aceptar y pagar',
       ),
     )));
   }
