@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class CartFoodCard extends StatelessWidget {
-  final item;
-  const CartFoodCard({super.key, this.item});
+  final Map item;
+  const CartFoodCard({super.key, required this.item});
   @override
   Widget build(BuildContext context) {
     return SizedBox(
