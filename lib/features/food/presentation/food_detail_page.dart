@@ -14,47 +14,47 @@ class FoodDetailPage extends StatelessWidget {
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Column(
-                children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(20),
-                    child: SizedBox(
-                      height: 600,
-                      child: PageView(
-                        children: [
-                          Image.network(food['images'][0], fit: BoxFit.cover),
-                          Image.network(food['images'][1], fit: BoxFit.cover),
-                          Image.network(food['images'][2], fit: BoxFit.cover),
-                        ],
-                      ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(20),
+                  child: SizedBox(
+                    height: 550,
+                    child: PageView(
+                      children: [
+                        Image.network(food['images'][0], fit: BoxFit.cover),
+                        Image.network(food['images'][1], fit: BoxFit.cover),
+                        Image.network(food['images'][2], fit: BoxFit.cover),
+                      ],
                     ),
                   ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(food['title'], style: TextStyle(fontSize: 40)),
-                      Text(
-                        food['price'].toString(),
-                        style: TextStyle(fontSize: 30, color: Colors.green),
-                      ),
-                    ],
-                  ),
+                ),
 
-                  Text(food['description'], textAlign: TextAlign.justify,),
-                ],
-              ),
-              ElevatedButton(
+                SizedBox(height: 10),
+                Text(food['title'], style: TextStyle(fontSize: 40)),
+                SizedBox(height: 5),
+                Text(
+                  '${food['price']} €',
+                  style: TextStyle(fontSize: 30, color: Colors.green),
+                ),
+                SizedBox(height: 10),
+                Text(food['description'], textAlign: TextAlign.left),
+              ],
+            ),
+            Center(
+              child: ElevatedButton(
                 onPressed: () {
                   addToCart(food);
                 },
                 child: Text('Añadir a la cesta'),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
