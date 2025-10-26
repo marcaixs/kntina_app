@@ -10,6 +10,11 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(home:LoginPage());
+    return MaterialApp(
+      title: 'Kntina App',
+      theme: ThemeData(
+        fontFamily: 'Epilogue',
+      ),
+      home:const LoginPage());
   }
 }
