@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kntina_app/core/widgets/back_appbar.dart';
 import 'package:kntina_app/features/shared/widgets/custom_button.dart';
+import 'package:kntina_app/features/shared/widgets/custom_text_field.dart';
 
 class EditProfilePage extends StatelessWidget {
   const EditProfilePage({super.key});
@@ -27,35 +28,23 @@ class EditProfilePage extends StatelessWidget {
                     child: Column(
                       children: [
                   
-                        TextFormField(
-                          decoration: InputDecoration(
-                            labelText: 'Nombre y Apellidos',
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                          ),
+                        CustomTextField(
+                          label: 'Nombre y Apellidos',
+                          
                         ),
                         SizedBox(height: 16),
                   
-                        TextFormField(
-                          decoration: InputDecoration(
-                            labelText: 'Teléfono',
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                            prefixIcon: Icon(Icons.phone),
-                          ),
+                        CustomTextField(
+                          label: 'Teléfono',
+                          icon: Icons.phone,
+                          keyboardType: TextInputType.phone,
                         ),
                         SizedBox(height: 16),
                     
-                        TextFormField(
-                          decoration: InputDecoration(
-                            labelText: 'Correo electrónico',
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                            prefixIcon: Icon(Icons.mail),
-                          ),
+                        CustomTextField(
+                          label: 'Correo electrónico',
+                          icon: Icons.mail,
+                          keyboardType: TextInputType.emailAddress,
                         ),
                       ],
                     ),
