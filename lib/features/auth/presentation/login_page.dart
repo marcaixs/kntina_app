@@ -3,6 +3,7 @@ import 'package:flutter/gestures.dart';
 import 'package:kntina_app/features/auth/presentation/recover_password_page.dart';
 import 'package:kntina_app/features/auth/presentation/signup_page.dart';
 import 'package:kntina_app/features/home/home_page.dart';
+import 'package:kntina_app/features/shared/widgets/custom_button.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -51,110 +52,100 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
   return Scaffold(
-    body: DecoratedBox(
-      decoration: BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage("assets/images/login.png"),
-          fit: BoxFit.cover,
-        ),
+  body: DecoratedBox(
+    decoration: BoxDecoration(
+      image: DecorationImage(
+        image: AssetImage("assets/images/login.png"),
+        fit: BoxFit.cover,
       ),
-      child: Padding(
-        padding: const EdgeInsets.all(12.0),
-        child: SizedBox(
-          height: double.infinity,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Column(
+    ),
+    child: Padding(
+      padding: const EdgeInsets.all(12.0),
+      child: Column(
+        children: [
+          SizedBox(height: 50),
+          Image.asset("assets/images/logo.png", width: 200),
+          SizedBox(height: 20),
+          Text('Nos alegra que estés de vuelta!'),
+          SizedBox(height: 20),
+          Expanded(
+            child: Form(
+              key: _formLoginKey,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  SizedBox(height: 100),
-                  Image(image: AssetImage("assets/images/logo.png"), width: 200),
-                  SizedBox(height: 50),
-                  Text('Nos alegra que estés de vuelta!'),
-                  Form(
-                    key: _formLoginKey,
-                    child: Column(
+                  TextFormField(
+                    decoration: InputDecoration(label: Text('Correo')),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return "Por favor introduce un correo electronico";
+                      }
+                      return null;
+                    },
+                    onSaved: (value) => _mail = value!,
+                  ),
+                  TextFormField(
+                    decoration: InputDecoration(label: Text('Contraseña')),
+                    obscureText: true,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return "Por favor introduce una contraseña";
+                      }
+                      return null;
+                    },
+                    onSaved: (value) => _password = value!,
+                  ),
+                  SizedBox(height: 20),
+                  RichText(
+                    text: TextSpan(
                       children: [
-                        TextFormField(
-                          decoration: InputDecoration(label: Text('Correo')),
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return "Por favor introduce un correo electronico";
-                            }
-                            return null;
-                          },
-                          onSaved: (value) {
-                            _mail = value!;
-                          },
+                        TextSpan(
+                          text: 'He olvidado mi contraseña ',
+                          style: TextStyle(color: Colors.black),
                         ),
-                        TextFormField(
-                          decoration: InputDecoration(label: Text('Contraseña')),
-                          obscureText: true,
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return "Por favor introduce una contraseña";
-                            }
-                            return null;
-                          },
-                          onSaved: (value) {
-                            _password = value!;
-                          },
-                        ),
-                        SizedBox(height: 20),
-                        RichText(
-                          text: TextSpan(
-                            children: <TextSpan>[
-                              TextSpan(
-                                text: 'He olvidado mi contraseña ',
-                                style: TextStyle(color: Colors.black),
-                              ),
-                              TextSpan(
-                                text: 'recuperar',
-                                style: TextStyle(color: Colors.blue),
-                                recognizer: TapGestureRecognizer()
-                                  ..onTap = goToPassword,
-                              ),
-                            ],
-                          ),
+                        TextSpan(
+                          text: 'recuperar',
+                          style: TextStyle(color: Colors.blue),
+                          recognizer: TapGestureRecognizer()..onTap = goToPassword,
                         ),
                       ],
                     ),
                   ),
                 ],
               ),
-
-              Column(
+            ),
+          ),
+          Column(
+            children: [
+              CustomButton(
+                onPressed: setLogin,
+                text: 'Iniciar sesión',
+              ),
+              SizedBox(height: 10),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  ElevatedButton(
-                    onPressed: setLogin,
-                    child: Text('Iniciar sesión'),
-                  ),
-                  SizedBox(height: 10),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text('¿Aún no tienes cuenta?'),
-                      RichText(
-                        text: TextSpan(
-                          children: <TextSpan>[
-                            TextSpan(
-                              text: '¡Únete a Kntina!',
-                              style: TextStyle(color: Colors.blue),
-                              recognizer: TapGestureRecognizer()
-                                ..onTap = goToSignUp,
-                            ),
-                          ],
+                  Text('¿Aún no tienes cuenta? '),
+                  RichText(
+                    text: TextSpan(
+                      children: [
+                        TextSpan(
+                          text: '¡Únete a Kntina!',
+                          style: TextStyle(color: Colors.blue),
+                          recognizer: TapGestureRecognizer()..onTap = goToSignUp,
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                  SizedBox(height: 20,)
                 ],
               ),
+              SizedBox(height: 20),
             ],
           ),
-        ),
+        ],
       ),
     ),
-  );
+  ),
+);
+
 }}
