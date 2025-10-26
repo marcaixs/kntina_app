@@ -21,3 +21,12 @@ flutter:
   uses-material-design: true
   assets:
     - assets/images/
+  fonts:
+    - family: Epilogue
+      fonts:
+        - asset: assets/fonts/Epilogue-Italic-VariableFont_wght.ttf
+          style: italic
+        - asset: assets/fonts/Epilogue-VariableFont_wght.ttf
+        - asset: assets/fonts/Newsreader-Italic-VariableFont_opsz,wght.ttf
+          style: italic
+        - asset: assets/fonts/Newsreader-VariableFont_opsz,wght.ttf
