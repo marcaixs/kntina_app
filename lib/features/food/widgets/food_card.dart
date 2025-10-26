@@ -13,7 +13,6 @@ class FoodCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-   
     return InkWell(
       onTap: addToCart != null
           ? () {
@@ -24,21 +23,36 @@ class FoodCard extends StatelessWidget {
                 ),
               );
             }
-          : null, 
+          : null,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Image.network(food['images'][0], fit: BoxFit.cover),
-          Padding(
-            padding: const EdgeInsets.all(8),
-            child: Center(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text(food['title']),
-                  Text('${food['price']} €'),
-                ],
+          ClipRRect(
+            borderRadius: BorderRadius.circular(20),
+            child: SizedBox(
+              height: 250,  
+              width: double.infinity,
+              child: Image.network(
+                food['images'][0],
+                fit: BoxFit.cover,
               ),
+            ),
+          ),
+          const SizedBox(height: 8),
+          Center(
+            child: Column(
+              children: [
+                Text(
+                  food['title'],
+                  textAlign: TextAlign.center,
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  '${food['price']} €',
+                  style: const TextStyle(color: Colors.green),
+                  textAlign: TextAlign.center,
+                ),
+              ],
             ),
           ),
         ],
