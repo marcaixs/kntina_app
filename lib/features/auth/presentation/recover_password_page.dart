@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kntina_app/core/widgets/back_appbar.dart';
+import 'package:kntina_app/features/shared/widgets/custom_button.dart';
 
 class RecoverPasswordPage extends StatelessWidget {
   const RecoverPasswordPage({super.key});
@@ -34,7 +35,7 @@ class RecoverPasswordPage extends StatelessWidget {
            
             Column(
               children: [
-                ElevatedButton(onPressed: () {}, child: Text('Enviar')),
+                CustomButton(onPressed: () {}, text: 'Enviar'),
                 SizedBox(height: 20,)
               ],
             ),
