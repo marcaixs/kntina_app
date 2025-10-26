@@ -3,25 +3,28 @@ import 'package:kntina_app/features/food/presentation/food_detail_page.dart';
 
 class FoodCard extends StatelessWidget {
   final Map food;
-  final Function addToCart;
+  final Function? addToCart;
 
   const FoodCard({
     super.key,
     required this.food,
-    required this.addToCart
+    this.addToCart,
   });
 
   @override
   Widget build(BuildContext context) {
+   
     return InkWell(
-      onTap:  () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (_) => FoodDetailPage(food: food, addToCart: addToCart,),
-          ),
-        );
-      },
+      onTap: addToCart != null
+          ? () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => FoodDetailPage(food: food, addToCart: addToCart!),
+                ),
+              );
+            }
+          : null, 
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -31,7 +34,10 @@ class FoodCard extends StatelessWidget {
             child: Center(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
-                children: [Text(food['title']), Text('${food['price']} €')],
+                children: [
+                  Text(food['title']),
+                  Text('${food['price']} €'),
+                ],
               ),
             ),
           ),
