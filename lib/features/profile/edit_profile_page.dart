@@ -30,7 +30,13 @@ class EditProfilePage extends StatelessWidget {
                   
                         CustomTextField(
                           label: 'Nombre y Apellidos',
-                          
+                          icon: Icons.person,
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return "Por favor introduce tu nombre y apellidos";
+                            }
+                            return null;
+                          },
                         ),
                         SizedBox(height: 16),
                   
@@ -38,6 +44,12 @@ class EditProfilePage extends StatelessWidget {
                           label: 'Teléfono',
                           icon: Icons.phone,
                           keyboardType: TextInputType.phone,
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return "Por favor introduce tu número de teléfono";
+                            }
+                            return null;
+                          },
                         ),
                         SizedBox(height: 16),
                     
@@ -45,6 +57,15 @@ class EditProfilePage extends StatelessWidget {
                           label: 'Correo electrónico',
                           icon: Icons.mail,
                           keyboardType: TextInputType.emailAddress,
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return "Por favor introduce tu correo electrónico";
+                            }
+                            if (!value.contains('@') || !value.contains('.')) {
+                              return "Por favor introduce un correo electrónico válido";
+                            }
+                            return null;
+                          },
                         ),
                       ],
                     ),
