@@ -4,6 +4,7 @@ import 'package:kntina_app/features/auth/presentation/recover_password_page.dart
 import 'package:kntina_app/features/auth/presentation/signup_page.dart';
 import 'package:kntina_app/features/home/home_page.dart';
 import 'package:kntina_app/features/shared/widgets/custom_button.dart';
+import 'package:kntina_app/features/shared/widgets/custom_text_field.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -74,8 +75,10 @@ class _LoginPageState extends State<LoginPage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  TextFormField(
-                    decoration: InputDecoration(label: Text('Correo')),
+                  CustomTextField(
+                    label: 'Correo',
+                    icon: Icons.mail,
+                    keyboardType: TextInputType.emailAddress,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return "Por favor introduce un correo electronico";
@@ -84,9 +87,11 @@ class _LoginPageState extends State<LoginPage> {
                     },
                     onSaved: (value) => _mail = value!,
                   ),
-                  TextFormField(
-                    decoration: InputDecoration(label: Text('Contraseña')),
-                    obscureText: true,
+                  SizedBox(height: 16),
+                  CustomTextField(
+                    label: 'Contraseña',
+                    icon: Icons.lock,
+                    isPassword: true,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return "Por favor introduce una contraseña";
