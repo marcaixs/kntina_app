@@ -1,4 +1,6 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:kntina_app/features/auth/presentation/login_page.dart';
 import 'package:kntina_app/features/shared/widgets/custom_button.dart';
 
 class SignupPage extends StatefulWidget {
@@ -36,10 +38,9 @@ class SignupPageState extends State<SignupPage> {
           child: SizedBox(
             height: double.infinity,
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     SizedBox(height: 100),
                     Center(
@@ -52,6 +53,10 @@ class SignupPageState extends State<SignupPage> {
                     ),
                     Text('Crea tu cuenta!', style: TextStyle(fontSize: 16)),
                     SizedBox(height: 20),
+                    CircleAvatar(
+                      radius: 70,
+                      child: Icon(Icons.image_not_supported, size: 20),
+                    ),
                     Form(
                       key: _formSignupKey,
                       child: Column(
@@ -60,32 +65,23 @@ class SignupPageState extends State<SignupPage> {
                             decoration: InputDecoration(
                               labelText: 'Nombre y apellidos',
                             ),
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return "Por favor introduce un nombre de usuario";
-                              }
-                              return null;
-                            },
+                            validator: (value) => value!.isEmpty
+                                ? "Por favor introduce un nombre de usuario"
+                                : null,
                             onSaved: (value) => _username = value!,
                           ),
                           TextFormField(
                             decoration: InputDecoration(labelText: 'Teléfono'),
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return "Por favor introduce un teléfono";
-                              }
-                              return null;
-                            },
+                            validator: (value) => value!.isEmpty
+                                ? "Por favor introduce un teléfono"
+                                : null,
                             onSaved: (value) => _tel = value!,
                           ),
                           TextFormField(
                             decoration: InputDecoration(labelText: 'Correo'),
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return "Por favor introduce un correo electrónico";
-                              }
-                              return null;
-                            },
+                            validator: (value) => value!.isEmpty
+                                ? "Por favor introduce un correo electrónico"
+                                : null,
                             onSaved: (value) => _mail = value!,
                           ),
                           TextFormField(
@@ -93,12 +89,9 @@ class SignupPageState extends State<SignupPage> {
                               labelText: 'Contraseña',
                             ),
                             obscureText: true,
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return "Por favor introduce una contraseña";
-                              }
-                              return null;
-                            },
+                            validator: (value) => value!.isEmpty
+                                ? "Por favor introduce una contraseña"
+                                : null,
                             onSaved: (value) => _password = value!,
                           ),
                         ],
@@ -106,12 +99,38 @@ class SignupPageState extends State<SignupPage> {
                     ),
                   ],
                 ),
-
-                Column(
+                Spacer(),
+                Row(
                   children: [
-                    CustomButton(
-                      onPressed: () {},
-                      text: 'Crear cuenta',
+                    Checkbox(value: false, onChanged: (_) {}),
+                    Expanded(child: Text('He leído y acepto los términos y condiciones y la política de privacidad')),
+                  ],
+                ),
+               SizedBox(height: 10,),
+                CustomButton(onPressed: () {}, text: 'Crear cuenta'),
+                SizedBox(height: 10,),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text('¿Ya tienes cuenta? '),
+                    RichText(
+                      text: TextSpan(
+                        children: [
+                          TextSpan(
+                            text: '¡Entra en Kntina!',
+                            style: TextStyle(color: Colors.blue),
+                            recognizer: TapGestureRecognizer()
+                              ..onTap = () {
+                                Navigator.of(context).push(
+                                  MaterialPageRoute<void>(
+                                    builder: (context) => const LoginPage(),
+                                  ),
+                                );
+                              },
+                          ),
+                          
+                        ],
+                      ),
                     ),
                   ],
                 ),
