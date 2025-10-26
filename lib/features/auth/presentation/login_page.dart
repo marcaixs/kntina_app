@@ -27,6 +27,10 @@ class _LoginPageState extends State<LoginPage> {
       {
         goToMainPage();
       }
+    
+        ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Correo o contraseña incorrectos')),
+      );
     }
   }
 
