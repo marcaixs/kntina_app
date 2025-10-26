@@ -41,9 +41,10 @@ class _HomePageState extends State<HomePage> {
 
   void addToCart(item) {
     bool itemExists = cartList.any((cartItem) => cartItem['id'] == item['id']);
+
     if (!itemExists) {
       setState(() {
-        Map cartItem = Map.from(item);
+        Map<String, dynamic> cartItem = Map<String, dynamic>.from(item);
         cartItem['quantity'] = 1;
         cartList.add(cartItem);
       });
@@ -69,6 +70,60 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
+  void completeOrder() {
+    if (cartList.isEmpty) return;
+
+    double totalPrice = 0;
+    for (var item in cartList) {
+      totalPrice += (item['price'] ?? 0).toDouble() * (item['quantity'] ?? 1);
+    }
+
+    final newOrder = {
+      "id":
+          "KH${DateTime.now().millisecondsSinceEpoch.toString().substring(8)}",
+      "date":
+          "${DateTime.now().day} de ${_getMonthName(DateTime.now().month)} de ${DateTime.now().year}",
+      "price": totalPrice,
+      "status": "en camino",
+      "products": cartList
+          .map(
+            (item) => {
+              "id": item['id'],
+              "images": item['images'],
+              "title": item['title'],
+              "description": item['description'],
+              "price": item['price'],
+              "category": item['category'],
+              "quantity": item['quantity'] ?? 1,
+            },
+          )
+          .toList(),
+    };
+
+    setState(() {
+      testUser.orderHistory.insert(0, newOrder);
+      cartList.clear();
+    });
+  }
+
+  String _getMonthName(int month) {
+    const months = [
+      'enero',
+      'febrero',
+      'marzo',
+      'abril',
+      'mayo',
+      'junio',
+      'julio',
+      'agosto',
+      'septiembre',
+      'octubre',
+      'noviembre',
+      'diciembre',
+    ];
+    return months[month - 1];
+  }
+
   List<Widget> get pageOptions => [
     FoodListPage(foodList: _foodList, addToCart: addToCart),
     OrdersPage(orderList: testUser.orderHistory),
@@ -76,6 +131,7 @@ class _HomePageState extends State<HomePage> {
       cartList: cartList,
       updateQuantity: updateCartItemQuantity,
       removeItem: removeFromCart,
+      completeOrder: completeOrder,
     ),
   ];
 
