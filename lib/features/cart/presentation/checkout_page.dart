@@ -60,12 +60,24 @@ class CheckoutPage extends StatelessWidget {
                   CustomTextField(
                     label: 'Dirección',
                     icon: Icons.location_on,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return "Por favor introduce una dirección de entrega";
+                      }
+                      return null;
+                    },
                   ),
                   SizedBox(height: 16),
                   CustomTextField(
                     label: 'Teléfono',
                     icon: Icons.phone,
                     keyboardType: TextInputType.phone,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return "Por favor introduce un teléfono de contacto";
+                      }
+                      return null;
+                    },
                   ),
                 ],
               ),
