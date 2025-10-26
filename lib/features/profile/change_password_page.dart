@@ -23,6 +23,12 @@ class ChangePasswordPage extends StatelessWidget {
                     label: 'Contraseña anterior*',
                     icon: Icons.lock_outline,
                     isPassword: true,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return "Por favor introduce tu contraseña actual";
+                      }
+                      return null;
+                    },
                   ),
                   const SizedBox(height: 16),
 
@@ -30,6 +36,13 @@ class ChangePasswordPage extends StatelessWidget {
                     label: 'Nueva contraseña*',
                     icon: Icons.lock_outline,
                     isPassword: true,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return "Por favor introduce una nueva contraseña";
+                      }
+                  
+                      return null;
+                    },
                   ),
                   const SizedBox(height: 16),
 
@@ -37,6 +50,12 @@ class ChangePasswordPage extends StatelessWidget {
                     label: 'Confirmar nueva contraseña*',
                     icon: Icons.lock_outline,
                     isPassword: true,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return "Por favor confirma tu nueva contraseña";
+                      }
+                      return null;
+                    },
                   ),
                 ],
               ),
