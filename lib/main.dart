@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:kntina_app/features/auth/presentation/login_page.dart';
-import 'package:kntina_app/features/home/home_page.dart';
 
 void main() {
   runApp(const MainApp());
