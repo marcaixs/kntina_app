@@ -9,15 +9,15 @@ class EditProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _formKey = GlobalKey<FormState>();
+    final formKey = GlobalKey<FormState>();
 
     String name = testUser.name;
     String phone = testUser.phone;
     String email = testUser.email;
 
     void saveProfile() {
-      if (_formKey.currentState!.validate()) {
-        _formKey.currentState!.save(); 
+      if (formKey.currentState!.validate()) {
+        formKey.currentState!.save(); 
         testUser.name = name;
         testUser.phone = phone;
         testUser.email = email;
@@ -46,7 +46,7 @@ class EditProfilePage extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16.0),
                     child: Form(
-                      key: _formKey,
+                      key: formKey,
                       child: Column(
                         children: [
                           CustomTextField(

@@ -10,7 +10,7 @@ class RecoverPasswordPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-   final _formRecoverPasswordKey = GlobalKey<FormState>();
+   final formRecoverPasswordKey = GlobalKey<FormState>();
    
     return Scaffold(
       appBar: BackAppbar(title: 'Recuperar contraseña'),
@@ -24,7 +24,7 @@ class RecoverPasswordPage extends StatelessWidget {
                 Image(image: AssetImage("assets/images/logo.png"), width: 200),
                 SizedBox(height: 50),
                 Form(
-                  key: _formRecoverPasswordKey,
+                  key: formRecoverPasswordKey,
                   child: Padding(
                     padding: const EdgeInsets.all(30.0),
                     child: CustomTextField(

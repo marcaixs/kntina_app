@@ -12,9 +12,9 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _formLoginKey = GlobalKey<FormState>();
-    String _mail = '';
-    String _password = '';
+    final formLoginKey = GlobalKey<FormState>();
+    String mail = '';
+    String password = '';
 
     void goToMainPage() {
       Navigator.of(context).pushAndRemoveUntil(
@@ -24,9 +24,9 @@ class LoginPage extends StatelessWidget {
     }
 
     void setLogin() {
-      if (_formLoginKey.currentState!.validate()) {
-        _formLoginKey.currentState!.save();
-        if (_mail == testUser.email && _password == testUser.password) {
+      if (formLoginKey.currentState!.validate()) {
+        formLoginKey.currentState!.save();
+        if (mail == testUser.email && password == testUser.password) {
           goToMainPage();
         } else {
           ScaffoldMessenger.of(context).showSnackBar(
@@ -69,7 +69,7 @@ class LoginPage extends StatelessWidget {
               SizedBox(height: 20),
               Expanded(
                 child: Form(
-                  key: _formLoginKey,
+                  key: formLoginKey,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
@@ -86,7 +86,7 @@ class LoginPage extends StatelessWidget {
                           }
                           return null;
                         },
-                        onSaved: (value) => _mail = value!,
+                        onSaved: (value) => mail = value!,
                       ),
                       SizedBox(height: 16),
                       CustomTextField(
@@ -99,7 +99,7 @@ class LoginPage extends StatelessWidget {
                           }
                           return null;
                         },
-                        onSaved: (value) => _password = value!,
+                        onSaved: (value) => password = value!,
                       ),
                       SizedBox(height: 20),
                       RichText(
