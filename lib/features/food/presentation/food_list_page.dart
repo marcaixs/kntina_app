@@ -52,24 +52,27 @@ class _FoodListPageState extends State<FoodListPage>
           ],
         ),
         Expanded(
-          child: TabBarView(controller: _tabController, children: [
-          FoodGrid(
-            foodList: _filterByCategory('Todo'),
-            addToCart: widget.addToCart,
-          ),
-         FoodGrid(
-            foodList: _filterByCategory('Pasta'),
-            addToCart: widget.addToCart,
-          ),
-          FoodGrid(
-            foodList: _filterByCategory('Verduras'),
-            addToCart: widget.addToCart,
-          ),
-          FoodGrid(
-            foodList: _filterByCategory('Pescado'),
-            addToCart: widget.addToCart,
-          ),
-        ])
+          child: Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: TabBarView(controller: _tabController, children: [
+            FoodGrid(
+              foodList: _filterByCategory('Todo'),
+              addToCart: widget.addToCart,
+            ),
+                     FoodGrid(
+              foodList: _filterByCategory('Pasta'),
+              addToCart: widget.addToCart,
+            ),
+            FoodGrid(
+              foodList: _filterByCategory('Verduras'),
+              addToCart: widget.addToCart,
+            ),
+            FoodGrid(
+              foodList: _filterByCategory('Pescado'),
+              addToCart: widget.addToCart,
+            ),
+                    ]),
+          )
         ),
       ],
     );
