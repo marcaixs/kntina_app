@@ -68,7 +68,7 @@ class _HomePageState extends State<HomePage> {
             Navigator.push(
               context,
               MaterialPageRoute(builder: (_) => ProfilePage()));},
-            child: CircleAvatar(radius: 18)),
+            child: CircleAvatar(radius: 18, backgroundImage: AssetImage(testUser.profileImage),)),
         ),
         title:  Center(
             child: Image.asset('assets/images/logo.png', height: 25),
