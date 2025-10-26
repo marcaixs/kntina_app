@@ -1,8 +1,16 @@
 import 'package:flutter/material.dart';
 
 class CartFoodCard extends StatelessWidget {
-  final Map item;
-  const CartFoodCard({super.key, required this.item});
+  final dynamic item;
+  final Function(int, int)? updateQuantity;
+  final Function(int)? removeItem;
+
+  const CartFoodCard({
+    super.key,
+    required this.item,
+    this.updateQuantity,
+    this.removeItem,
+  });
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -46,16 +54,48 @@ class CartFoodCard extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    IconButton(icon: Icon(Icons.cancel), onPressed: () {}),
-                    Row(
-                      children: [
-                        IconButton(onPressed: () {}, icon: Icon(Icons.remove)),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                          child: Text('2', style: TextStyle(fontSize: 16)),
-                        ),
-                        IconButton(onPressed: () {}, icon: Icon(Icons.add)),
-                      ],
+                    IconButton(
+                      icon: Icon(Icons.delete),
+                      onPressed: () {
+                        if (removeItem != null) {
+                          removeItem!(item['id']);
+                        }
+                      },
+                    ),
+                    Container(
+                      decoration: BoxDecoration(
+                        color: const Color.fromARGB(255, 11, 52, 23),
+                        borderRadius: BorderRadius.circular(25),
+                      ),
+                      child: Row(
+                        children: [
+                          IconButton(
+                            onPressed: () {
+                              int currentQuantity = item['quantity'] ?? 1;
+                              if (currentQuantity > 1 && updateQuantity != null) {
+                                updateQuantity!(item['id'], currentQuantity - 1);
+                              }
+                            },
+                            icon: Icon(Icons.remove, color: Colors.white,),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                            child: Text(
+                              '${item['quantity'] ?? 1}',
+                              style: TextStyle(fontSize: 16, color: Colors.white),
+                            ),
+                          ),
+                          IconButton(
+                            onPressed: () {
+                              int currentQuantity = item['quantity'] ?? 1;
+                              if (updateQuantity != null) {
+                                updateQuantity!(item['id'], currentQuantity + 1);
+                              }
+                            },
+                            icon: Icon(Icons.add, color: Colors.white),
+                          ),
+                        ],
+                      ),
                     ),
                   ],
                 ),
