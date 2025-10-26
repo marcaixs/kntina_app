@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kntina_app/core/widgets/back_appbar.dart';
 import 'package:kntina_app/features/shared/widgets/custom_button.dart';
+import 'package:kntina_app/features/shared/widgets/custom_text_field.dart';
 
 class CheckoutPage extends StatelessWidget {
   final double price;
@@ -56,11 +57,15 @@ class CheckoutPage extends StatelessWidget {
             Form(
               child: Column(
                 children: [
-                  TextFormField(
-                    decoration: const InputDecoration(labelText: 'Dirección'),
+                  CustomTextField(
+                    label: 'Dirección',
+                    icon: Icons.location_on,
                   ),
-                  TextFormField(
-                    decoration: const InputDecoration(labelText: 'Telefono'),
+                  SizedBox(height: 16),
+                  CustomTextField(
+                    label: 'Teléfono',
+                    icon: Icons.phone,
+                    keyboardType: TextInputType.phone,
                   ),
                 ],
               ),
