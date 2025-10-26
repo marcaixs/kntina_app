@@ -7,12 +7,14 @@ class CartPage extends StatefulWidget {
   final List cartList;
   final Function(int, int)? updateQuantity;
   final Function(int)? removeItem;
+  final VoidCallback? completeOrder;
 
   const CartPage({
     super.key,
     required this.cartList,
     this.updateQuantity,
     this.removeItem,
+    this.completeOrder,
   });
 
   @override
@@ -64,7 +66,11 @@ class _CartPageState extends State<CartPage> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (_) => CheckoutPage(price: subtotal),
+                    builder: (_) => CheckoutPage(
+                      price: subtotal,
+                      cartList: widget.cartList,
+                      completeOrder: widget.completeOrder,
+                    ),
                   ),
                 );
               },
