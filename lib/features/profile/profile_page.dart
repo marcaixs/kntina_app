@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kntina_app/features/auth/presentation/login_page.dart';
 import 'package:kntina_app/features/profile/change_password_page.dart';
 import 'package:kntina_app/features/profile/edit_profile_page.dart';
 import 'package:kntina_app/features/profile/information_page.dart';
@@ -173,7 +174,9 @@ class _ProfilePageState extends State<ProfilePage> {
                       title: 'Política de privacidad',
                     ),
                     ProfileListItem(
-                      imageIcon: ImageIcon(AssetImage('assets/images/icon.png')),
+                      imageIcon: ImageIcon(
+                        AssetImage('assets/images/icon.png'),
+                      ),
                       title: 'Información',
                       onTap: () {
                         Navigator.push(
@@ -186,6 +189,12 @@ class _ProfilePageState extends State<ProfilePage> {
                       icon: Icons.logout,
                       title: 'Cerrar sesión',
                       showDivider: false,
+                      onTap: () {
+                        Navigator.of(context).pushAndRemoveUntil(
+                          MaterialPageRoute(builder: (_) => LoginPage()),
+                          (route) => false,
+                        );
+                      },
                     ),
                   ],
                 ),
