@@ -18,7 +18,7 @@ class User {
 }
 
 User testUser = User(
-  name: 'Marrc Caixas',
+  name: 'Marc Caixas',
   email: 'marc@example.com',
   phone: '+34 600 123 456',
   profileImage: 'assets/images/profile.jpg',
