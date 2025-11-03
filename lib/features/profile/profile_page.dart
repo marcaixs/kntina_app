@@ -6,14 +6,9 @@ import 'package:kntina_app/features/profile/information_page.dart';
 import 'package:kntina_app/features/profile/widgets/profile_list_item.dart';
 import 'package:kntina_app/user.dart';
 
-class ProfilePage extends StatefulWidget {
+class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
 
-  @override
-  State<ProfilePage> createState() => _ProfilePageState();
-}
-
-class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
